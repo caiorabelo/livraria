@@ -1,0 +1,29 @@
+@import 'bootstrap/scss/bootstrap';
+
+$cor-fundo: #f4f6f8;
+$cor-texto: #1a1a1a;
+$cor-menu: #1b4d6e;
+
+body {
+    background-color: $cor-fundo;
+    color: $cor-texto;
+    font-size: 1rem;
+}
+
+.navbar {
+    background-color: $cor-menu;
+}
+
+.navbar-brand {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.btn {
+    min-height: 2.5rem;
+}
+
+h1,
+.h3 {
+    color: $cor-menu;
+}
