@@ -23,13 +23,21 @@ composer install
 ```
 
 3. Copie `.env.example` para `.env.local` e ajuste `DATABASE_URL` (usuário, senha, host e nome do banco).
-4. Crie o banco:
+4. Crie o banco e importe os scripts em ordem:
 
 ```sql
 CREATE DATABASE livraria CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-Os scripts de tabelas, VIEW e dados iniciais ficam em `sql/` (importar na ordem numérica dos arquivos).
+```bash
+mysql -u root -p livraria < sql/01_schema.sql
+mysql -u root -p livraria < sql/02_view.sql
+mysql -u root -p livraria < sql/03_seed.sql
+```
+
+- `01_schema.sql` — tabelas do modelo (mais o campo `Valor` em Livro)
+- `02_view.sql` — `vw_relatorio_livros` (fonte do relatório, agrupada por autor)
+- `03_seed.sql` — dados de exemplo, incluindo um livro com dois autores
 
 5. Instale e compile os assets (Bootstrap e Sass via Webpack Encore):
 
