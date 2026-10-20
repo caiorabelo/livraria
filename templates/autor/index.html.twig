@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Autores — Livraria{% endblock %}
+
+{% block body %}
+    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2 mb-3">
+        <h1 class="h3 mb-0">Autores</h1>
+        <a class="btn btn-primary" href="{{ path('app_autor_novo') }}">Novo autor</a>
+    </div>
+
+    {% if autores is empty %}
+        <p class="text-muted mb-0">Nenhum autor cadastrado.</p>
+    {% else %}
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col" class="text-end">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for autor in autores %}
+                        <tr>
+                            <td>{{ autor.codAu }}</td>
+                            <td>{{ autor.nome }}</td>
+                            <td class="text-end">
+                                <a class="btn btn-outline-secondary btn-sm" href="{{ path('app_autor_editar', {codAu: autor.codAu}) }}">Editar</a>
+                                <form class="d-inline" method="post" action="{{ path('app_autor_excluir', {codAu: autor.codAu}) }}" onsubmit="return confirm('Excluir este autor?');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('excluir-autor' ~ autor.codAu) }}">
+                                    <button class="btn btn-outline-danger btn-sm" type="submit">Excluir</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}
