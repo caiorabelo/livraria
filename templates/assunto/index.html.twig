@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Assuntos — Livraria{% endblock %}
+
+{% block body %}
+    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2 mb-3">
+        <h1 class="h3 mb-0">Assuntos</h1>
+        <a class="btn btn-primary" href="{{ path('app_assunto_novo') }}">Novo assunto</a>
+    </div>
+
+    {% if assuntos is empty %}
+        <p class="text-muted mb-0">Nenhum assunto cadastrado.</p>
+    {% else %}
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col" class="text-end">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for assunto in assuntos %}
+                        <tr>
+                            <td>{{ assunto.codAs }}</td>
+                            <td>{{ assunto.descricao }}</td>
+                            <td class="text-end">
+                                <a class="btn btn-outline-secondary btn-sm" href="{{ path('app_assunto_editar', {codAs: assunto.codAs}) }}">Editar</a>
+                                <form class="d-inline" method="post" action="{{ path('app_assunto_excluir', {codAs: assunto.codAs}) }}" onsubmit="return confirm('Excluir este assunto?');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('excluir-assunto' ~ assunto.codAs) }}">
+                                    <button class="btn btn-outline-danger btn-sm" type="submit">Excluir</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}
