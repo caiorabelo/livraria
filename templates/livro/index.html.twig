@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livros — Livraria{% endblock %}
+
+{% block body %}
+    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2 mb-3">
+        <h1 class="h3 mb-0">Livros</h1>
+        <a class="btn btn-primary" href="{{ path('app_livro_novo') }}">Novo livro</a>
+    </div>
+
+    {% if livros is empty %}
+        <p class="text-muted mb-0">Nenhum livro cadastrado.</p>
+    {% else %}
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col">Título</th>
+                        <th scope="col">Editora</th>
+                        <th scope="col">Edição/Ano</th>
+                        <th scope="col">Autores</th>
+                        <th scope="col">Assuntos</th>
+                        <th scope="col" class="text-end">Valor</th>
+                        <th scope="col" class="text-end">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for livro in livros %}
+                        <tr>
+                            <td>{{ livro.titulo }}</td>
+                            <td>{{ livro.editora }}</td>
+                            <td>{{ livro.edicao }}ª / {{ livro.anoPublicacao }}</td>
+                            <td>
+                                {% for autor in livro.autores %}
+                                    {{ autor.nome }}{% if not loop.last %}, {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% for assunto in livro.assuntos %}
+                                    {{ assunto.descricao }}{% if not loop.last %}, {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td class="text-end text-nowrap">
+                                R$ {{ livro.valor|number_format(2, ',', '.') }}
+                            </td>
+                            <td class="text-end text-nowrap">
+                                <a class="btn btn-outline-secondary btn-sm" href="{{ path('app_livro_editar', {codl: livro.codl}) }}">Editar</a>
+                                <form class="d-inline" method="post" action="{{ path('app_livro_excluir', {codl: livro.codl}) }}" onsubmit="return confirm('Excluir este livro?');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('excluir-livro' ~ livro.codl) }}">
+                                    <button class="btn btn-outline-danger btn-sm" type="submit">Excluir</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}
