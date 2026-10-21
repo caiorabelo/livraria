@@ -27,3 +27,14 @@ h1,
 .h3 {
     color: $cor-menu;
 }
+
+.dashboard-card {
+    color: $cor-texto;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.dashboard-card:hover,
+.dashboard-card:focus-visible {
+    border-color: $cor-menu;
+    transform: translateY(-0.125rem);
+}

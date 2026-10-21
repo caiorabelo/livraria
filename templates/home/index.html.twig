@@ -3,12 +3,42 @@
 {% block title %}Início — Livraria{% endblock %}
 
 {% block body %}
-    <div class="row justify-content-center">
-        <div class="col-12 col-lg-8">
-            <h1 class="h3 mb-3">Cadastro de livros</h1>
-            <p class="lead">
-                Aplicação web em PHP 8.2 e Symfony 7 para manutenção de livros, autores e assuntos.
-            </p>
+    <section class="mb-4">
+        <h1 class="h3 mb-2">Cadastro de livros</h1>
+        <p class="lead mb-0">
+            Gerencie o acervo, seus autores e assuntos.
+        </p>
+    </section>
+
+    <div class="row g-3">
+        <div class="col-12 col-md-4">
+            <a class="card dashboard-card h-100 text-decoration-none" href="{{ path('app_livro_index') }}">
+                <div class="card-body">
+                    <p class="text-muted mb-1">Livros</p>
+                    <p class="display-6 fw-semibold mb-2">{{ quantidadeLivros }}</p>
+                    <span class="link-primary">Acessar cadastro</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <a class="card dashboard-card h-100 text-decoration-none" href="{{ path('app_autor_index') }}">
+                <div class="card-body">
+                    <p class="text-muted mb-1">Autores</p>
+                    <p class="display-6 fw-semibold mb-2">{{ quantidadeAutores }}</p>
+                    <span class="link-primary">Acessar cadastro</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <a class="card dashboard-card h-100 text-decoration-none" href="{{ path('app_assunto_index') }}">
+                <div class="card-body">
+                    <p class="text-muted mb-1">Assuntos</p>
+                    <p class="display-6 fw-semibold mb-2">{{ quantidadeAssuntos }}</p>
+                    <span class="link-primary">Acessar cadastro</span>
+                </div>
+            </a>
         </div>
     </div>
 {% endblock %}
