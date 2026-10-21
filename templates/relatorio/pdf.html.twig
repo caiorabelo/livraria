@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <title>Relatório de livros por autor</title>
+        <style>
+            @page { margin: 24px; }
+            body {
+                color: #1a1a1a;
+                font-family: "DejaVu Sans", sans-serif;
+                font-size: 10px;
+            }
+            h1 {
+                color: #1b4d6e;
+                font-size: 20px;
+                margin: 0 0 4px;
+            }
+            .gerado-em {
+                color: #666;
+                margin: 0 0 18px;
+            }
+            .autor {
+                page-break-inside: avoid;
+                margin-bottom: 18px;
+            }
+            h2 {
+                background: #1b4d6e;
+                color: #fff;
+                font-size: 13px;
+                margin: 0;
+                padding: 7px;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+            th, td {
+                border: 1px solid #bbb;
+                padding: 6px;
+                text-align: left;
+            }
+            th { background: #e9eef2; }
+            .numero { text-align: right; white-space: nowrap; }
+            .vazio {
+                border: 1px solid #bbb;
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Relatório de livros por autor</h1>
+        <p class="gerado-em">Gerado em {{ geradoEm|date('d/m/Y H:i') }}</p>
+
+        {% if autores is empty %}
+            <p class="vazio">Não há livros com autores vinculados para exibir.</p>
+        {% else %}
+            {% for grupo in autores %}
+                <section class="autor">
+                    <h2>{{ grupo.autor }}</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Livro</th>
+                                <th>Editora</th>
+                                <th>Edição</th>
+                                <th>Ano</th>
+                                <th>Assuntos</th>
+                                <th class="numero">Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for livro in grupo.livros %}
+                                <tr>
+                                    <td>{{ livro.titulo }}</td>
+                                    <td>{{ livro.editora }}</td>
+                                    <td>{{ livro.edicao }}ª</td>
+                                    <td>{{ livro.anoPublicacao }}</td>
+                                    <td>{{ livro.assuntos ?: '—' }}</td>
+                                    <td class="numero">
+                                        R$ {{ livro.valor|number_format(2, ',', '.') }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </section>
+            {% endfor %}
+        {% endif %}
+    </body>
+</html>

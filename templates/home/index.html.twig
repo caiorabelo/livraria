@@ -11,7 +11,7 @@
     </section>
 
     <div class="row g-3">
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-sm-6 col-xl-3">
             <a class="card dashboard-card h-100 text-decoration-none" href="{{ path('app_livro_index') }}">
                 <div class="card-body">
                     <p class="text-muted mb-1">Livros</p>
@@ -21,7 +21,7 @@
             </a>
         </div>
 
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-sm-6 col-xl-3">
             <a class="card dashboard-card h-100 text-decoration-none" href="{{ path('app_autor_index') }}">
                 <div class="card-body">
                     <p class="text-muted mb-1">Autores</p>
@@ -31,12 +31,22 @@
             </a>
         </div>
 
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-sm-6 col-xl-3">
             <a class="card dashboard-card h-100 text-decoration-none" href="{{ path('app_assunto_index') }}">
                 <div class="card-body">
                     <p class="text-muted mb-1">Assuntos</p>
                     <p class="display-6 fw-semibold mb-2">{{ quantidadeAssuntos }}</p>
                     <span class="link-primary">Acessar cadastro</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-12 col-sm-6 col-xl-3">
+            <a class="card dashboard-card h-100 text-decoration-none" href="{{ path('app_relatorio_index') }}">
+                <div class="card-body">
+                    <p class="text-muted mb-1">Relatório</p>
+                    <p class="h4 fw-semibold my-3">HTML e PDF</p>
+                    <span class="link-primary">Visualizar por autor</span>
                 </div>
             </a>
         </div>
