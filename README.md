@@ -22,7 +22,7 @@ Confirme a versão do PHP com `php -v` antes de instalar as dependências.
 composer install
 ```
 
-3. Copie `.env.example` para `.env.local` e ajuste `DATABASE_URL` (usuário, senha, host e nome do banco).
+3. Copie `.env.example` para `.env.local` e ajuste `APP_SECRET` e `DATABASE_URL` (usuário, senha, host e nome do banco).
 4. Crie o banco e importe os scripts em ordem:
 
 ```sql
@@ -59,7 +59,14 @@ Abra http://localhost:8000
 7. Testes:
 
 ```bash
-php bin/phpunit
+php vendor/bin/phpunit
+```
+
+Para validar também a configuração e os templates:
+
+```bash
+php bin/console lint:container
+php bin/console lint:twig templates
 ```
 
 ## Estrutura

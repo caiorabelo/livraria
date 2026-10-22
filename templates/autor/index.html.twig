@@ -27,7 +27,7 @@
                             <td>{{ autor.nome }}</td>
                             <td class="text-end">
                                 <a class="btn btn-outline-secondary btn-sm" href="{{ path('app_autor_editar', {codAu: autor.codAu}) }}">Editar</a>
-                                <form class="d-inline" method="post" action="{{ path('app_autor_excluir', {codAu: autor.codAu}) }}" onsubmit="return confirm('Excluir este autor?');">
+                                <form class="d-inline" method="post" action="{{ path('app_autor_excluir', {codAu: autor.codAu}) }}" data-confirmacao="Excluir este autor?">
                                     <input type="hidden" name="_token" value="{{ csrf_token('excluir-autor' ~ autor.codAu) }}">
                                     <button class="btn btn-outline-danger btn-sm" type="submit">Excluir</button>
                                 </form>

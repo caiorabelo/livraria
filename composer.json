@@ -1,4 +1,6 @@
 {
+    "name": "app/livraria",
+    "description": "Cadastro de livros desenvolvido com PHP e Symfony.",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",

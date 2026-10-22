@@ -45,7 +45,7 @@
                             </td>
                             <td class="text-end text-nowrap">
                                 <a class="btn btn-outline-secondary btn-sm" href="{{ path('app_livro_editar', {codl: livro.codl}) }}">Editar</a>
-                                <form class="d-inline" method="post" action="{{ path('app_livro_excluir', {codl: livro.codl}) }}" onsubmit="return confirm('Excluir este livro?');">
+                                <form class="d-inline" method="post" action="{{ path('app_livro_excluir', {codl: livro.codl}) }}" data-confirmacao="Excluir este livro?">
                                     <input type="hidden" name="_token" value="{{ csrf_token('excluir-livro' ~ livro.codl) }}">
                                     <button class="btn btn-outline-danger btn-sm" type="submit">Excluir</button>
                                 </form>

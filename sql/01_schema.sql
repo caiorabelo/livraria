@@ -42,9 +42,9 @@ CREATE TABLE Livro_Autor (
     KEY Livro_Autor_FKIndex1 (Livro_Codl),
     KEY Livro_Autor_FKIndex2 (Autor_CodAu),
     CONSTRAINT Rel_01 FOREIGN KEY (Livro_Codl) REFERENCES Livro (Codl)
-        ON DELETE CASCADE ON UPDATE CASCADE,
+        ON DELETE CASCADE,
     CONSTRAINT Rel_02 FOREIGN KEY (Autor_CodAu) REFERENCES Autor (CodAu)
-        ON DELETE RESTRICT ON UPDATE CASCADE
+        ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE Livro_Assunto (
@@ -54,7 +54,7 @@ CREATE TABLE Livro_Assunto (
     KEY Livro_Assunto_FKIndex1 (Livro_Codl),
     KEY Livro_Assunto_FKIndex2 (Assunto_codAs),
     CONSTRAINT Rel_03 FOREIGN KEY (Livro_Codl) REFERENCES Livro (Codl)
-        ON DELETE CASCADE ON UPDATE CASCADE,
+        ON DELETE CASCADE,
     CONSTRAINT Rel_04 FOREIGN KEY (Assunto_codAs) REFERENCES Assunto (codAs)
-        ON DELETE RESTRICT ON UPDATE CASCADE
+        ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -27,7 +27,7 @@
                             <td>{{ assunto.descricao }}</td>
                             <td class="text-end">
                                 <a class="btn btn-outline-secondary btn-sm" href="{{ path('app_assunto_editar', {codAs: assunto.codAs}) }}">Editar</a>
-                                <form class="d-inline" method="post" action="{{ path('app_assunto_excluir', {codAs: assunto.codAs}) }}" onsubmit="return confirm('Excluir este assunto?');">
+                                <form class="d-inline" method="post" action="{{ path('app_assunto_excluir', {codAs: assunto.codAs}) }}" data-confirmacao="Excluir este assunto?">
                                     <input type="hidden" name="_token" value="{{ csrf_token('excluir-assunto' ~ assunto.codAs) }}">
                                     <button class="btn btn-outline-danger btn-sm" type="submit">Excluir</button>
                                 </form>
